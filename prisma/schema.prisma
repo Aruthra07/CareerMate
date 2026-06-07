@@ -1,0 +1,111 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("USER") // USER, ADMIN
+  lang         String   @default("EN")   // EN, HI
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Profile {
+  id                String   @id @default(uuid())
+  userId            String   @unique
+  age               Int
+  country           String
+  education         String
+  currentProfession String
+  skills            String   // JSON string representing selected and custom skills
+  personality       String   // JSON string representing personality answers/scores
+  purpose           String   // JSON string representing purpose answers
+  rawBio            String   // The raw free-text AI description from the user
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model CareerMatch {
+  id              String   @id @default(uuid())
+  userId          String
+  careerName      String
+  category        String
+  matchScore      Int      // 0 to 100
+  reasoning       String
+  growthPotential String   // High, Medium, Low
+  salaryRange     String
+  demandLevel     String   // High, Stable, etc.
+  createdAt       DateTime @default(now())
+}
+
+model Ikigai {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  love             String   // Passions list / text (JSON)
+  goodAt           String   // Strengths list / text (JSON)
+  worldNeeds       String   // Mission / market needs (JSON)
+  paidFor          String   // Vocation / salary paths (JSON)
+  summary          String
+  purposeStatement String
+  analysis         String   // General advice
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Roadmap {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  content   String   // Heavy JSON representing the 0-3m, 3-6m, 6-12m, 1-3y, 3-5y tasks
+  createdAt DateTime @default(now())
+}
+
+model StudyTask {
+  id              String   @id @default(uuid())
+  userId          String
+  title           String
+  date            String   // YYYY-MM-DD
+  durationMinutes Int      @default(0)
+  isCompleted     Boolean  @default(false)
+  type            String   // DAILY, WEEKLY, MONTHLY
+  createdAt       DateTime @default(now())
+}
+
+model StudyMetric {
+  id               String   @id @default(uuid())
+  userId           String
+  hoursStudied     Float    @default(0.0)
+  skillsLearned    Int      @default(0)
+  coursesCompleted Int      @default(0)
+  booksRead        Int      @default(0)
+  certsEarned      Int      @default(0)
+  date             String   // YYYY-MM-DD
+  createdAt        DateTime @default(now())
+}
+
+model ChatHistory {
+  id        String   @id @default(uuid())
+  userId    String
+  role      String   // user or assistant
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model CommunityPost {
+  id        String   @id @default(uuid())
+  userId    String
+  userName  String
+  title     String
+  content   String
+  groupName String   // e.g. "Tech", "Creative", "Business"
+  likes     Int      @default(0)
+  comments  String   // JSON array of comment objects [{id, userName, text, date}]
+  createdAt DateTime @default(now())
+}
