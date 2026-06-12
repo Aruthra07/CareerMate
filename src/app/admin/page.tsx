@@ -54,7 +54,7 @@ export default function AdminDashboard() {
       {/* Header bar */}
       <header className="h-16 border-b border-slate-900 bg-slate-950 flex items-center justify-between px-8">
         <div className="flex items-center gap-3">
-          <Link href="/dashboard/overview" className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors">
+          <Link href="/dashboard" className="p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-white transition-colors">
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <span className="text-sm font-bold font-display uppercase tracking-wider text-slate-200">System Admin Control Center</span>

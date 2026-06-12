@@ -33,7 +33,7 @@ function LoginContent() {
   // If already authenticated, redirect
   useEffect(() => {
     if (user) {
-      router.push('/dashboard/overview');
+      router.push('/dashboard');
     }
   }, [user, router]);
 
@@ -57,7 +57,7 @@ function LoginContent() {
           if (checkRes.ok) {
             const data = await checkRes.json();
             if (data.profile) {
-              router.push('/dashboard/overview');
+              router.push('/dashboard');
             } else {
               router.push('/onboarding');
             }

@@ -46,7 +46,7 @@ export function Navbar() {
           {user ? (
             <div className="flex items-center gap-3">
               <Link
-                href="/dashboard/overview"
+                href="/dashboard"
                 className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-md shadow-blue-600/10 hover:shadow-blue-600/20 transition-all"
                 id="navbar-dashboard-btn"
               >

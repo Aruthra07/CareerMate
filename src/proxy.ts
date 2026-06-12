@@ -23,7 +23,7 @@ export async function proxy(request: NextRequest) {
 
   // If user is logged in, redirect them away from login page to the dashboard
   if (user && pathname === '/login') {
-    return NextResponse.redirect(new URL('/dashboard/overview', request.url));
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   // If trying to access protected routes without a token, redirect to login
@@ -40,7 +40,7 @@ export async function proxy(request: NextRequest) {
 
   // Admin routing check
   if (isAdminRoute && user && user.role !== 'ADMIN') {
-    return NextResponse.redirect(new URL('/dashboard/overview', request.url));
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   return NextResponse.next();

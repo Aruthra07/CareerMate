@@ -118,18 +118,18 @@ export default function OnboardingPage() {
 
       if (res.ok) {
         setTimeout(() => {
-          router.push('/dashboard/overview');
+          router.push('/dashboard');
         }, 4500);
       } else {
         alert('Server database offline. Saving profile metrics in local memory.');
         setTimeout(() => {
-          router.push('/dashboard/overview');
+          router.push('/dashboard');
         }, 4500);
       }
     } catch (err) {
       console.warn('Network error, profile cached locally');
       setTimeout(() => {
-        router.push('/dashboard/overview');
+        router.push('/dashboard');
       }, 4500);
     }
   };
